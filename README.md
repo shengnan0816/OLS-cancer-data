@@ -18,7 +18,7 @@ A ordinary least squares regression model applied on cancer data of US
 
 - import data from each data source
 - drop columns not relevant + format 'StateFIPS' and 'CountyFIPS'
-```
+```py
 incddf = pd.read_csv('incd.csv')
 incddf.rename(columns={' FIPS':'FIPS'}, inplace=True)
 mortdf['FIPS'] = mortdf.FIPS.apply(lambda x: str(int(x)))\
