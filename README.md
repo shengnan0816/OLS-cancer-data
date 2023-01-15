@@ -18,6 +18,16 @@ A ordinary least squares regression model applied on cancer data of US
 
 - import data from each data source
 - drop columns not relevant + format 'StateFIPS' and 'CountyFIPS'
+```
+incddf = pd.read_csv('incd.csv')
+incddf.rename(columns={' FIPS':'FIPS'}, inplace=True)
+mortdf['FIPS'] = mortdf.FIPS.apply(lambda x: str(int(x)))\
+                            .astype(np.object_)\
+                            .str.pad(5, 'left', '0')
+incddf['FIPS'] = incddf.FIPS.apply(lambda x: str(int(x)))\
+                            .astype(np.object_)\
+                            .str.pad(5, 'left', '0')
+```
 - merge dataframes
 - dxploratory data analysis: convert columns with string data to numeric + convert categorical data to dummy variables
 - visual exploratory analysis - observe correlation betwen each variables and drop those redundant
