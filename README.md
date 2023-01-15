@@ -24,15 +24,19 @@ A ordinary least squares regression model applied on cancer data of US
 # incidence data example
 incddf = pd.read_csv('incd.csv')
 incddf.rename(columns={' FIPS':'FIPS'}, inplace=True)
-mortdf['FIPS'] = mortdf.FIPS.apply(lambda x: str(int(x)))\
-                            .astype(np.object_)\
-                            .str.pad(5, 'left', '0')
-incddf['FIPS'] = incddf.FIPS.apply(lambda x: str(int(x)))\
-                            .astype(np.object_)\
-                            .str.pad(5, 'left', '0')
+mortdf['FIPS'] = mortdf.FIPS.apply(lambda x: str(int(x))) .astype(np.object_).str.pad(5, 'left', '0')
+incddf['FIPS'] = incddf.FIPS.apply(lambda x: str(int(x))).astype(np.object_).str.pad(5, 'left', '0')
 ```
 - merge dataframes on column FIPS
-- dxploratory data analysis: convert columns with string data to numeric + convert categorical data to dummy variables
+```py
+dfs = [povdf, incomedf, hinsdf, incddf, mortdf]
+for i, j in enumerate(dfs):
+    if i == 0:
+        fulldf = j.copy()
+    else:
+        fulldf = fulldf.merge(j, how='inner', on='FIPS')
+```
+- exploratory data analysis: convert columns with string data to numeric + convert categorical data to dummy variables
 - visual exploratory analysis - observe correlation betwen each variables and drop those redundant
 - build linear regression model
 - check multicollinearity, distribution and heteroscedasticity
