@@ -16,9 +16,12 @@ A ordinary least squares regression model applied on cancer data of US
 
 ## Roadmap
 
-- import data from each data source
-- drop columns not relevant + format 'StateFIPS' and 'CountyFIPS'
+- preprocess each data file (drop empty FIP records because I need FIP to join with other data files) and save processed data files
+- import cleaned data files
+- drop columns not relevant 
+- format 'StateFIPS' and 'CountyFIPS'
 ```py
+# incidence data example
 incddf = pd.read_csv('incd.csv')
 incddf.rename(columns={' FIPS':'FIPS'}, inplace=True)
 mortdf['FIPS'] = mortdf.FIPS.apply(lambda x: str(int(x)))\
@@ -28,7 +31,7 @@ incddf['FIPS'] = incddf.FIPS.apply(lambda x: str(int(x)))\
                             .astype(np.object_)\
                             .str.pad(5, 'left', '0')
 ```
-- merge dataframes
+- merge dataframes on column FIPS
 - dxploratory data analysis: convert columns with string data to numeric + convert categorical data to dummy variables
 - visual exploratory analysis - observe correlation betwen each variables and drop those redundant
 - build linear regression model
