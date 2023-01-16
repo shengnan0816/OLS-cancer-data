@@ -68,3 +68,6 @@ for i, j in enumerate(dfs):
 ![image](https://user-images.githubusercontent.com/34575198/212569770-57ef3646-cb7f-41eb-92b7-5a7583121511.png)
     - The plot of residuals versus fitted values shows that the residuals are fairly symmetric relative to the fitted values.
 ![image](https://user-images.githubusercontent.com/34575198/212569794-a2999061-2748-4cb1-b8b1-8fbe4a3ff889.png)
+
+## Conclusion 
+- though the result is not perfect (residual distribution is left skewed and has larger kurtosis), the R^2 is pretty decent. 
